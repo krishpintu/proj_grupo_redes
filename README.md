@@ -1,6 +1,11 @@
 # GrupoRedes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+and @angular/material@7 @angular/cdk@7
+
+## Install older version 
+
+npm install --save @angular/material@7 @angular/cdk@7
 
 ## Development server
 
