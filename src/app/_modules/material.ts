@@ -22,6 +22,7 @@ import * as Mat from '@angular/material';
         Mat.MatStepperModule,
         Mat.MatToolbarModule,
         Mat.MatIconModule,
+        Mat.MatCardModule,
     ],
     exports: [
         Mat.MatButtonModule,
@@ -38,6 +39,7 @@ import * as Mat from '@angular/material';
         Mat.MatStepperModule,
         Mat.MatToolbarModule,
         Mat.MatIconModule,
+        Mat.MatCardModule,
     ]
 })
 
