@@ -23,6 +23,7 @@ import * as Mat from '@angular/material';
         Mat.MatToolbarModule,
         Mat.MatIconModule,
         Mat.MatCardModule,
+        Mat.MatDividerModule,
     ],
     exports: [
         Mat.MatButtonModule,
@@ -40,6 +41,7 @@ import * as Mat from '@angular/material';
         Mat.MatToolbarModule,
         Mat.MatIconModule,
         Mat.MatCardModule,
+        Mat.MatDividerModule,
     ]
 })
 

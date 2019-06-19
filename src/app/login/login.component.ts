@@ -16,5 +16,8 @@ export class LoginComponent implements OnInit {
       password :['',[Validators.required]]
     });
   }
+  onLoginClick(){
+    this._router.navigateByUrl('home');
+  }
 
 }
