@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Demonstração de turnê</h1>
+<div mat-dialog-content>
+<mat-card>
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Qual Solução <br>Está buscando?</ng-template>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ex animi qui quis eaque saepe, sapiente repellat ullam exercitationem assumenda sequi earum blanditiis, obcaecati omnis, ratione nam consequuntur suscipit ut.</p>
+            <div>
+                <button mat-raised-button color="primary" matStepperNext>próximo</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>dados da empresa</ng-template>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ex animi qui quis eaque saepe, sapiente repellat ullam exercitationem assumenda sequi earum blanditiis, obcaecati omnis, ratione nam consequuntur suscipit ut.</p>
+            <div>
+                <button mat-raised-button matStepperPrevious>De volta</button>
+                <button mat-raised-button color="primary" matStepperNext>próximo</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepperIcon="done">
+            <mat-icon>done_all</mat-icon>
+        </ng-template>
+        <ng-template matStepLabel>resultado</ng-template>
+        Você está feito agora.
+        <div>
+            <button mat-raised-button  matStepperPrevious>De volta</button> 
+            <button mat-raised-button color="primary" (click)="stepper.reset()">Reiniciar</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+</mat-card>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="accent" (click)="onCancel()">Cancelar</button>
+</div>

@@ -11,12 +11,16 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './_modules/material';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { DemoComponent } from './demo/demo.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DemoComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
