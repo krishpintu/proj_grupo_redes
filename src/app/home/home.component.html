@@ -1,3 +1,5 @@
+
+
 <mat-toolbar >
     <mat-toolbar-row>
       <span><img class="logo" src="../../assets/img/logo.png"></span>
@@ -16,7 +18,7 @@
             <mat-icon>notifications_off</mat-icon>
             <span>Disable alerts</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="onLogout()">
               <mat-icon>exit_to_app</mat-icon>
               <span>Logout</span>
             </button>

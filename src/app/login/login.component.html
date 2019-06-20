@@ -16,7 +16,7 @@
           </form>
     </mat-card-content>
     <mat-card-actions>
-        <button class="full-width" mat-raised-button color="primary" (click)="onLoginClick()"  cdkFocusInitial>Entrar</button>
+        <button class="full-width" [disabled]="submitted" mat-raised-button color="primary" (click)="onLoginClick()"  cdkFocusInitial>Entrar</button>
     </mat-card-actions>
   </mat-card>
 </div>
