@@ -4,3 +4,23 @@ table{
 .mat-raised-button.mat-green {
     background-color: #5cf436bd;
 }
+
+.item-container{
+    display: flex;
+    flex-direction: column;
+}
+.item-row{
+    display: flex;
+    justify-content: space-around;
+    align-items:center; 
+}
+.item-flex{
+    flex: 1;
+    margin-left:10px; 
+}
+.item{
+    width: 10%;
+}
+.item-action{
+    width: 20px;
+}

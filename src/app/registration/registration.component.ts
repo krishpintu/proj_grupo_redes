@@ -22,5 +22,8 @@ export class RegistrationComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
+  onChkBoxClick(chktype:string):void{
+    alert(chktype);
+  }
 
 }
