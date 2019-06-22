@@ -151,8 +151,14 @@ export class RegistrationComponent implements OnInit {
       this._model.mappedProduct=frm1data['mappedProduct'];
 
       console.log(this._model);
-      alert('ddd');
-      stepper.next();
+      this._dataservie.registration(this._model).subscribe(res => {
+        alert('ddd');
+        console.log(res);
+        stepper.next();
+      });
+      
+      
+      
     }
     
  }

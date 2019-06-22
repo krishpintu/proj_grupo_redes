@@ -5,7 +5,7 @@ export class RegistrationModel {
     operationArea:string="INDUSTRIAL";
     contactNumber:string;
     emailAddress:string;
-    address:[];
+    address:{};
     leadGroup={"type":"LAN_TO_LAN"};
     selectedProduct:string;
     mappedProduct:string;
