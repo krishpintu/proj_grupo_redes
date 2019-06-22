@@ -4,274 +4,125 @@
 <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
         <ng-template matStepLabel>Qual Solução Está buscando?</ng-template>
-        <form [formGroup]="firstFormGroup">
-            <div class="item-container">
-                <!-- 1 -->
+
+        <div class="item-container">
+            <form [formGroup]="firstFormGroup">
+                <mat-radio-group aria-label="Select an option" formControlName="opt_type" class="item-row" (change)="onTypeChnage()">
+                    <mat-radio-button class="item-flex" value="LINK_DEDICADO">Link Dedicado</mat-radio-button>
+                    <mat-radio-button class="item-flex" value="BANDA_LARGA">Banda Larga</mat-radio-button>
+                    <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponta a Ponta</mat-radio-button>
+                    <mat-radio-button class="item-flex" value="METRO_ETHERNET">Metro Ethernet</mat-radio-button>
+                </mat-radio-group>
                 <div class="item-row">
-                    <div class="item">
-                        <mat-checkbox (onclick)="onChkBoxClick('link')">Link Dedicado</mat-checkbox>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" formControlName="firstCtrl" required>
-                            <button mat-icon-button matSuffix>
+                        <mat-divider class="item-flex"></mat-divider>
+                </div>
+                <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
+                <div class="item-row" [formGroupName]="i">
+                        <mat-form-field class="item">
+                            <input matInput placeholder="CEP" formControlName="zip" required>
+                            <button mat-icon-button matSuffix (click)="getCEPData(i)">
                                 <mat-icon>find_replace</mat-icon>
                             </button>
                         </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
+                        <mat-form-field class="item-flex">
+                            <input matInput placeholder="Endereço" readonly formControlName="address">
+                            <input type="hidden" formControlName="cep">
+                            <input type="hidden" formControlName="city">
+                            <input type="hidden" formControlName="state">
+                            <input type="hidden" formControlName="country">
                         </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
+                        <mat-form-field class="item">
+                            <input matInput placeholder="Número" formControlName="streetNumber">
                         </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
-                </div>
-
-                <div class="item-row">
-                    <div class="item-flex">
-                        <mat-divider></mat-divider>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="item-row">
-                    <div class="item">
-                        <mat-checkbox>Banda Larga</mat-checkbox>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
+                        <mat-form-field class="item">
+                                <input matInput placeholder="complemento" formControlName="complemento">
+                            </mat-form-field>
+                        <div class="item-action" *ngIf="isAddition"> 
+                            <button mat-icon-button  (click)="addNewAddress()"  *ngIf="i==0; else del">
+                                <mat-icon>note_add</mat-icon>
                             </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
-                </div>
+                            <ng-template #del>
+                                <button mat-icon-button (click)="delAddress(i)" *ngIf="i>2">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </ng-template>
+                        </div>
+                        
 
-                <div class="item-row">
-                    <div class="item-flex">
-                        <mat-divider></mat-divider>
-                    </div>
                 </div>
-                <!-- 3 -->
-                <div class="item-row">
-                    <div class="item">
-                        <mat-checkbox>Ponta a Ponta</mat-checkbox>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
                 </div>
                 <div class="item-row">
-                    <div class="item"></div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
+                    <mat-divider class="item-flex"></mat-divider>
                 </div>
                 <div class="item-row">
                     <div class="item-flex">
-                        <mat-divider></mat-divider>
+                            <mat-checkbox class="item-flex" value="RADIO" formControlName="fiber" (change)="mapProduct()">fibra óptica</mat-checkbox> &nbsp;
+                            <mat-checkbox class="item-flex" value="FIBRA_OTICA" formControlName="radio"  (change)="mapProduct()">rádio Frequência</mat-checkbox>
+                            <input type="hidden" formControlName="mappedProduct">
                     </div>
                 </div>
-
-                <!-- 4 -->
-                <div class="item-row">
-                    <div class="item">
-                        <mat-checkbox>Metro Ethernet</mat-checkbox>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
-                </div>
-                <div class="item-row">
-                    <div class="item"></div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"></div>
-                </div>
-                <div class="item-row">
-                    <div class="item"></div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>find_replace</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-flex">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número">
-                        </mat-form-field>
-                    </div>
-                    <div class="item-action"><button mat-icon-button>
-                            <mat-icon>note_add</mat-icon>
-                        </button></div>
-                </div>
-
-            </div>
-        </form>
-        <div class="mat-button-row">
-            <button mat-raised-button color="primary" matStepperNext>Avançar</button>
-        </div>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="false">
-        <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>dados da empresa</ng-template>
-
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Razão social" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CNPJ" required>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="CEP" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Endereço" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Número" required>
-                        </mat-form-field>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Email" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Contato" required>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Tel/Cel" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-
-
-            <div class="mat-button-row">
-                <button mat-raised-button matStepperPrevious>De volta</button>
+            </form>
+            <div class="item-row">
                 <button mat-raised-button color="primary" matStepperNext>Avançar</button>
             </div>
-        </form>
+        </div>
+
+
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="false">
+        <ng-template matStepLabel>dados da empresa</ng-template>
+        <div class="item-container">
+            <form [formGroup]="secondFormGroup">
+                <div class="item-row">
+                    <mat-form-field class="full-width item-flex">
+                        <input matInput placeholder="Razão social" formControlName="officialName" required>
+                    </mat-form-field>
+                </div>
+                <div class="item-row">
+                    <mat-form-field class="full-width item-flex">
+                        <input matInput placeholder="CNPJ" formControlName="uniqueKey" required>
+                    </mat-form-field>
+                    <mat-form-field class="full-width item-flex">
+                            <input matInput placeholder="CEP" formControlName="cep">
+                    </mat-form-field>
+                </div>
+                <div class="item-row">
+                        <mat-form-field class="full-width item-flex">
+                            <input matInput placeholder="Endereço" formControlName="address">
+                        </mat-form-field>
+                </div>
+                <div class="item-row">
+                        <mat-form-field class="full-width item-flex">
+                            <input matInput placeholder="Número" formControlName="streetno">
+                        </mat-form-field>
+                </div>
+                <div class="item-row">
+                        <mat-form-field class="full-width item-flex">
+                            <input matInput placeholder="Email" formControlName="emailAddress" required>
+                        </mat-form-field>
+                </div>
+                <div class="item-row">
+                        <mat-form-field class="full-width item-flex">
+                            <input matInput placeholder="Contato" formControlName="contato">
+                        </mat-form-field>
+                        <mat-form-field class="full-width item-flex">
+                                <input matInput placeholder="Tel/Cel" formControlName="contactNumber" required>
+                        </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="mat-button-row">
+            <button mat-raised-button (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button color="primary" (click)="onFinish(stepper)">Avançar</button>
+        </div>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         You are now done.
+        <pre>{{this.firstFormGroup.value|json}}</pre>
+        <pre>{{this.secondFormGroup.value|json}}</pre>
         <div class="mat-button-row">
-            <button mat-raised-button matStepperPrevious>De volta</button>
-            <button mat-raised-button color="green" (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button color="green" (click)="stepper.reset()">Close & Reset</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
