@@ -1,23 +1,24 @@
 
 <div class="landing-page">
-<div class="login-Container">
-<mat-card class="login-card">
-    <mat-card-header>
+  <div class="login-Container">
+    <mat-card class="login-card">
+      <mat-card-header>
         <img class="logo" src="../../assets/img/logo.png">
       </mat-card-header>
-    <mat-card-content>
+      <mat-card-content>
         <form [formGroup]="loginFrmGrp">
-            <mat-form-field class="full-width">
-              <input matInput placeholder="Email" formControlName="usernameOrEmail">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="Senha" formControlName="password">
-            </mat-form-field>
-          </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button class="full-width" mat-raised-button color="primary" (click)="onLoginClick()"  cdkFocusInitial>Entrar</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="usernameOrEmail">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Senha" formControlName="password">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="full-width" [disabled]="submitted" mat-raised-button color="primary" (click)="onLoginClick()"
+          cdkFocusInitial>Entrar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

@@ -3,241 +3,275 @@
 </mat-toolbar>
 <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
-      <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Qual Solução Está buscando?</ng-template>
-        <table>
-          <tr>
-            <td><mat-checkbox class="chkbox">Link Dedicado</mat-checkbox></td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP" formControlName="firstCtrl" required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr><td colspan="4"><mat-divider></mat-divider></td></tr>
-         <tr>
-            <td><mat-checkbox class="chkbox">Banda Larga</mat-checkbox></td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP"  required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr><td colspan="4"><mat-divider></mat-divider></td></tr>
-         <tr>
-            <td rowspan="2"><mat-checkbox class="chkbox">Ponta a Ponta</mat-checkbox></td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP" required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP" required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr><td colspan="4"><mat-divider></mat-divider></td></tr>
-         <tr>
-            <td rowspan="4"><mat-checkbox class="chkbox">Metro Ethernet</mat-checkbox></td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP"  required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP"  required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP"  required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="CEP"  required>    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Endereço">    
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="full-width">    
-                    <input matInput placeholder="Número">    
-                </mat-form-field>
-            </td>
-         </tr>
-         <tr>
-           <td></td>
-            <td>
-                <mat-checkbox class="full-width" >Fibra óptica</mat-checkbox>
-            </td>
-            <td>
-                <mat-checkbox class="full-width" >Rádio Frequência</mat-checkbox>
-            </td>
-            <td colspan="2"></td>
-         </tr>
-        </table>
+        <form [formGroup]="firstFormGroup">
+            <div class="item-container">
+                <!-- 1 -->
+                <div class="item-row">
+                    <div class="item">
+                        <mat-checkbox (onclick)="onChkBoxClick('link')">Link Dedicado</mat-checkbox>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" formControlName="firstCtrl" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-flex">
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="item-row">
+                    <div class="item">
+                        <mat-checkbox>Banda Larga</mat-checkbox>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-flex">
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="item-row">
+                    <div class="item">
+                        <mat-checkbox>Ponta a Ponta</mat-checkbox>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+                <div class="item-row">
+                    <div class="item"></div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+                <div class="item-row">
+                    <div class="item-flex">
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="item-row">
+                    <div class="item">
+                        <mat-checkbox>Metro Ethernet</mat-checkbox>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+                <div class="item-row">
+                    <div class="item"></div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"></div>
+                </div>
+                <div class="item-row">
+                    <div class="item"></div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>find_replace</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-flex">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número">
+                        </mat-form-field>
+                    </div>
+                    <div class="item-action"><button mat-icon-button>
+                            <mat-icon>note_add</mat-icon>
+                        </button></div>
+                </div>
+
+            </div>
+        </form>
         <div class="mat-button-row">
-          <button mat-raised-button  color="primary" matStepperNext>Avançar</button>
+            <button mat-raised-button color="primary" matStepperNext>Avançar</button>
         </div>
-      </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="false">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>dados da empresa</ng-template>
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>dados da empresa</ng-template>
 
-        <table>
-          <tr>
-            <td colspan="2">
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Razão social" formControlName="secondCtrl" required>
-                </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field class="full-width">
-                      <input matInput placeholder="CNPJ"  required>
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field class="full-width">
-                      <input matInput placeholder="CEP" required>
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td colspan="2">
-                  <mat-form-field class="full-width">
-                      <input matInput placeholder="Endereço"  required>
-                  </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-                <td >
-                    <mat-form-field class="full-width">
-                        <input matInput placeholder="Número"  required>
-                    </mat-form-field>
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                  <td colspan="2">
-                      <mat-form-field class="full-width">
-                          <input matInput placeholder="Email"  required>
-                      </mat-form-field>
-                  </td>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Razão social" formControlName="secondCtrl" required>
+                        </mat-form-field>
+                    </td>
                 </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="full-width">
-                        <input matInput placeholder="Contato"  required>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="full-width">
-                        <input matInput placeholder="Tel/Cel" required>
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
+                <tr>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CNPJ" required>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="CEP" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Endereço" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Número" required>
+                        </mat-form-field>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Email" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Contato" required>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Tel/Cel" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
 
-       
-        <div class="mat-button-row">
-          <button mat-raised-button matStepperPrevious>De volta</button>
-          <button mat-raised-button color="primary" matStepperNext>Avançar</button>
-        </div>
-      </form>
+
+            <div class="mat-button-row">
+                <button mat-raised-button matStepperPrevious>De volta</button>
+                <button mat-raised-button color="primary" matStepperNext>Avançar</button>
+            </div>
+        </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div class="mat-button-row">
-        <button mat-raised-button matStepperPrevious>De volta</button>
-        <button mat-raised-button color="green" (click)="stepper.reset()">Reset</button>
-      </div>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div class="mat-button-row">
+            <button mat-raised-button matStepperPrevious>De volta</button>
+            <button mat-raised-button color="green" (click)="stepper.reset()">Reset</button>
+        </div>
     </mat-step>
-  </mat-horizontal-stepper>
+</mat-horizontal-stepper>
