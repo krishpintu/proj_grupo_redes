@@ -102,7 +102,7 @@ export class RegistrationComponent implements OnInit {
     //working this.firstFormGroup.value.address_list[id].address = 'New Value';
     if (cep.trim() != "") {
       const add = fgcontrols.controls[index].get('address');
-      add.setValue('Please wait.....');
+      add.setValue('Carregando.....');
       this._dataservie.validateCEP(cep).subscribe(res => {
         if (res.bairro != null) {
           add.setValue(`${res.end} , ${res.bairro}`);

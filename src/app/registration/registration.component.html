@@ -1,11 +1,15 @@
 <mat-toolbar color="primary">
-    <span>Registration</span>
+    <span>Cadastro</span>
 </mat-toolbar>
 <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
         <ng-template matStepLabel>Qual Solução Está buscando?</ng-template>
-
         <div class="item-container">
+            <mat-card>
+                <div class="item-row">
+                  PRODUTO EM INTERESSE ?
+                </div>
+            </mat-card> 
             <form [formGroup]="firstFormGroup">
                 <mat-radio-group aria-label="Select an option" formControlName="opt_type" class="item-row" (change)="onTypeChnage()">
                     <mat-radio-button class="item-flex" value="LINK_DEDICADO">Link Dedicado</mat-radio-button>
@@ -13,11 +17,9 @@
                     <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponta a Ponta</mat-radio-button>
                     <mat-radio-button class="item-flex" value="METRO_ETHERNET">Metro Ethernet</mat-radio-button>
                 </mat-radio-group>
-                <div class="item-row">
-                        <mat-divider class="item-flex"></mat-divider>
-                </div>
                 <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
-                <div class="item-row" [formGroupName]="i">
+                <mat-card>
+                    <div class="item-row" [formGroupName]="i">
                         <mat-form-field class="item">
                             <input matInput placeholder="CEP" formControlName="zip" required>
                             <button mat-icon-button matSuffix (click)="getCEPData(i)">
@@ -50,9 +52,12 @@
                         
 
                 </div>
+                </mat-card>
                 </div>
+                <br><br><br>
+                <mat-card>
                 <div class="item-row">
-                    <mat-divider class="item-flex"></mat-divider>
+                    QUER CONECTIVIDADE POR ?
                 </div>
                 <div class="item-row">
                     <div class="item-flex">
@@ -61,6 +66,7 @@
                             <input type="hidden" formControlName="mappedProduct">
                     </div>
                 </div>
+            </mat-card>
             </form>
             <div class="item-row">
                 <button mat-raised-button color="primary" matStepperNext>Avançar</button>
@@ -70,7 +76,8 @@
 
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="false">
-        <ng-template matStepLabel>dados da empresa</ng-template>
+        <ng-template matStepLabel>Dados da empresa</ng-template>
+        <mat-card>
         <div class="item-container">
             <form [formGroup]="secondFormGroup">
                 <div class="item-row">
@@ -111,18 +118,19 @@
                 </div>
             </form>
         </div>
-        <div class="mat-button-row">
+       <div class="mat-button-row">
             <button mat-raised-button (click)="stepper.reset()">Reset</button>
-            <button mat-raised-button color="primary" (click)="onFinish(stepper)">Avançar</button>
+            <button mat-raised-button color="primary" (click)="onFinish(stepper)">Avançar e Checkar Viabilidade</button>
         </div>
+    </mat-card>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
+        <ng-template matStepLabel>Resultado</ng-template>
         You are now done.
         <pre>{{this.firstFormGroup.value|json}}</pre>
         <pre>{{this.secondFormGroup.value|json}}</pre>
         <div class="mat-button-row">
-            <button mat-raised-button color="green" (click)="stepper.reset()">Close & Reset</button>
+            <button mat-raised-button color="green" (click)="stepper.reset()">Fechar</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
