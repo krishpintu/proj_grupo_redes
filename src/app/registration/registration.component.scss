@@ -13,13 +13,15 @@ table{
     display: flex;
     justify-content: space-around;
     align-items:center; 
+    margin-top: 10px;
 }
 .item-flex{
     flex: 1;
     margin-left:10px; 
 }
 .item{
-    width: 10%;
+    width: 15%;
+    margin-left:10px;
 }
 .item-action{
     width: 20px;

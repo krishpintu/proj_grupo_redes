@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     config.disableClose=true;
     config.autoFocus=true;
     config.width="50%";
-    this.dialog.open(DemoComponent,config);
+    //this.dialog.open(DemoComponent,config);
   }
   onLogout(){
     this._service.logout();
