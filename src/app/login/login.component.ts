@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private _router:Router, private _route: ActivatedRoute,private _service: AuthenticationService) { 
     // redirect to home if already logged in
     if (this._service.currentUserValue) { 
-        this._router.navigate(['/home']);
+        this._router.navigate(['/home'],{skipLocationChange: true});
     }
   }
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       this.submitted=true;
       let loginCredential =this.loginFrmGrp.value;
       this._service.login(loginCredential).subscribe( data => {
-          this._router.navigate([this.returnUrl]);
+          this._router.navigate([this.returnUrl],{skipLocationChange: true});
       },
       err =>{
           this.submitted=false;
