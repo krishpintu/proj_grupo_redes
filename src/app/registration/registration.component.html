@@ -133,22 +133,24 @@
                         <div class="item-flex progress">
                                 <label>
                                     <mat-icon matPrefix>hourglass_empty</mat-icon>
-                                     Please wait....
+                                     Verificando viabilidades....
                                 </label>  
                         </div>
                     </div>
-                    <p *ngIf="!isProgress">You are now done.</p>
+                    <p *ngIf="!isProgress">Resumo de calculo de viabilidade feita.Favor entrar em contato com nosso tecnicos com numero de referencia escrito abaixo para
+                        communicação futuro sobre deste cadastro. Valores e maiores informações vai ser encaminhado para o email informado.
+                    </p>
                     <div class="item-row" *ngIf="!isProgress">
                         <div class="item item-center">
                                 <mat-icon class="icon-success">verified_user</mat-icon>
                         </div>
                         <div class="item-flex">
-                                <p><b>Reference No : </b>{{result.leadGroup.name}}</p> 
-                                <p><b>foBasedViabilidadeByDistance : </b>{{result.foBasedViabilidadeByDistance}}</p> 
-                                <p><b>radioBasedViabilidadeByDistance : </b>{{result.radioBasedViabilidadeByDistance}}</p> 
-                                <p><b>selectedProduct : </b>{{result.selectedProduct}}</p> 
-                                <p><b>mappedProduct : </b>{{result.mappedProduct}}</p> 
-                                <p><b>Total address registered : </b>{{result.address.length}}</p>
+                                <p><b>Numero de referencia : </b>{{result.leadGroup.name}}</p> 
+                                <p><b>FO Viabilidade por distancia : </b>{{result.foBasedViabilidadeByDistance}} <b>%</b> </p> 
+                                <p><b>Radio Viabilidade por distancia : </b>{{result.radioBasedViabilidadeByDistance}} <b>%</b></p> 
+                                <!-- <p><b>Para uso internal : </b>{{result.selectedProduct}}</p>  -->
+                                <p><b>Produtos Selecionado neste cadastro : </b>{{result.mappedProduct}}</p> 
+                                <p><b>Numero de endereços neste cadastro : </b>{{result.address.length}}</p>
                         </div>
                     </div>
             </div>

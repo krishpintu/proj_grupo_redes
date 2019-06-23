@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <span>Painel</span>
 </mat-toolbar>
-<p  *ngIf="isLoading">Please wait data is Loading..........</p>
+<p  *ngIf="isLoading">Carregando dados..........</p>
 <div class="container-table" >
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
