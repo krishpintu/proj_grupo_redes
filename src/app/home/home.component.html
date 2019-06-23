@@ -2,8 +2,8 @@
 <mat-toolbar class="toolbarHead">
     <mat-toolbar-row>
       <span><img class="logo" src="../../assets/img/logo.png"></span>
-      <a mat-button routerLink="/home/dashbord">Dashbord</a>
-      <a mat-button  routerLink="/home/reg">Registration</a>
+      <a mat-button [routerLink]="['/home/dashbord']" skipLocationChange>Dashbord</a>
+      <a mat-button  routerLink="/home/reg" skipLocationChange>Registration</a>
       <span class="header-spacer"></span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>

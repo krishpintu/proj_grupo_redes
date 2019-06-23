@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {DataService} from '../_services/dataservice.service';
+import { MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { DataService} from '../_services/dataservice.service';
 import { Router } from '@angular/router';
 import { AuthenticationService} from '../_services/authentication.service';
 import { MatDialog,MatDialogConfig} from '@angular/material';
@@ -64,22 +64,13 @@ export class DashboardComponent implements OnInit {
     }
   }
   redirectToDetails(id){
-    this._dataService.getLeadDetail(id).subscribe(res=>{
-      console.log(res);
-      const config=new MatDialogConfig();
-      config.disableClose=false;
-      config.width="50%";
-      //config.data=res;
-      this.dialog.open(RegViewComponent,config);
-    },
-    err=>{
-       alert(err.error.message);
-       if(err.error.error=="Unauthorized"){
-         this._service.logout();
-         this._router.navigate(['/']);
-       }
-      }
-    );
+    
+    const config=new MatDialogConfig();
+    config.disableClose=false;
+    config.width="80%";
+    config.data=id;
+    this.dialog.open(RegViewComponent,config);
+
   }
 
 }
