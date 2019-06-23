@@ -2,6 +2,7 @@
     <span>Registration</span>
 </mat-toolbar>
 <mat-horizontal-stepper linear #stepper>
+
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
         <ng-template matStepLabel>Qual Solução Está buscando?</ng-template>
 
@@ -117,12 +118,37 @@
         </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <pre>{{this.firstFormGroup.value|json}}</pre>
-        <pre>{{this.secondFormGroup.value|json}}</pre>
-        <div class="mat-button-row">
-            <button mat-raised-button color="green" (click)="stepper.reset()">Close & Reset</button>
-        </div>
-    </mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            
+            <div class="item-container">
+                    <div class="item-row" *ngIf="isProgress">
+                        <div class="item-flex progress">
+                                <label>
+                                    <mat-icon matPrefix>hourglass_empty</mat-icon>
+                                     Please wait....
+                                </label>  
+                        </div>
+                    </div>
+                    <p *ngIf="!isProgress">You are now done.</p>
+                    <div class="item-row" *ngIf="!isProgress">
+                        <div class="item item-center">
+                                <mat-icon class="icon-success">verified_user</mat-icon>
+                        </div>
+                        <div class="item-flex">
+                                <p><b>Reference No : </b>{{result.leadGroup.name}}</p> 
+                                <p><b>foBasedViabilidadeByDistance : </b>{{result.foBasedViabilidadeByDistance}}</p> 
+                                <p><b>radioBasedViabilidadeByDistance : </b>{{result.radioBasedViabilidadeByDistance}}</p> 
+                                <p><b>selectedProduct : </b>{{result.selectedProduct}}</p> 
+                                <p><b>mappedProduct : </b>{{result.mappedProduct}}</p> 
+                                <p><b>Total address registered : </b>{{result.address.length}}</p>
+                        </div>
+                    </div>
+            </div>
+            <br>
+            <br>
+            <div class="mat-button-row" *ngIf="!isProgress">
+                <button mat-raised-button color="green" (click)="stepper.reset()">Close & Reset</button>
+            </div>
+        </mat-step>
+
 </mat-horizontal-stepper>

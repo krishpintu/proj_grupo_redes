@@ -1,21 +1,17 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {DataService} from '../_services/dataservice.service';
+import { Router } from '@angular/router';
+import { AuthenticationService} from '../_services/authentication.service';
 
-
-export interface UserData {
-  id: string;
+export interface leadData {
+  groupId: string;
   name: string;
-  progress: string;
-  color: string;
+  status: string;
+  type: string;
+  createdBy: string;
+  updateDate: string;
 }
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
 
 @Component({
   selector: 'app-dashboard',
@@ -24,48 +20,49 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 })
 export class DashboardComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['groupId', 'name', 'type', 'status','details'];
+  dataSource: MatTableDataSource<leadData>;
+
+  isLoading:boolean=true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { 
-
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  constructor(private _dataService:DataService,private _router :Router,private _service :AuthenticationService) { 
 
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getData();
   }
 
+  public getData(){
+    this._dataService.getLeads().subscribe(res=>{
+      //console.log(res);
+      this.dataSource = new MatTableDataSource(res);
+      this.isLoading=false;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      
+    },
+    err=>{
+       alert(err.error.message);
+       if(err.error.error=="Unauthorized"){
+         this._service.logout();
+         this._router.navigate(['/']);
+       }
+      }
+    );
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+  redirectToDetails(id){
+    alert(id);
+  }
   
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }
