@@ -40,6 +40,16 @@ export class DataService {
     }
     return this.http.post<any>(`${this.apiUrl}/lead/groups`,{"type":"UNKNOWN"},httpOptions);
   }
+  getLeadDetail(id){
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('currentUser')}`
+        })
+    }
+    return this.http.get<any>(`${this.apiUrl}/lead/in-group/viabilidade-report/${id}`,httpOptions);
+  }
   
 
 }

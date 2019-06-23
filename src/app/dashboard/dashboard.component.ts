@@ -3,6 +3,8 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {DataService} from '../_services/dataservice.service';
 import { Router } from '@angular/router';
 import { AuthenticationService} from '../_services/authentication.service';
+import { MatDialog,MatDialogConfig} from '@angular/material';
+import { RegViewComponent } from '../registration/reg-view.component';
 
 export interface leadData {
   groupId: string;
@@ -28,7 +30,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _dataService:DataService,private _router :Router,private _service :AuthenticationService) { 
+  constructor(private _dataService:DataService,private _router :Router,private _service :AuthenticationService,private dialog :MatDialog) { 
 
   }
 
@@ -62,7 +64,22 @@ export class DashboardComponent implements OnInit {
     }
   }
   redirectToDetails(id){
-    alert(id);
+    this._dataService.getLeadDetail(id).subscribe(res=>{
+      console.log(res);
+      const config=new MatDialogConfig();
+      config.disableClose=false;
+      config.width="50%";
+      //config.data=res;
+      this.dialog.open(RegViewComponent,config);
+    },
+    err=>{
+       alert(err.error.message);
+       if(err.error.error=="Unauthorized"){
+         this._service.logout();
+         this._router.navigate(['/']);
+       }
+      }
+    );
   }
-  
+
 }
