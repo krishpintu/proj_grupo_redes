@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { DemoComponent } from './demo/demo.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegViewComponent } from './registration/reg-view.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     DemoComponent,
     RegistrationComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegViewComponent
   ],
   imports: [
     BrowserModule,

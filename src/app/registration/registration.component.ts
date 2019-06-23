@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DataService } from '../_services/dataservice.service';
 import { RegistrationModel } from '../model/registration';
-
 import { MatStepper } from '@angular/material';
+import { Router } from '@angular/router';
+import { AuthenticationService} from '../_services/authentication.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,10 +19,12 @@ export class RegistrationComponent implements OnInit {
   secondFormGroup: FormGroup;
   items: FormArray;
   isAddition: boolean = false;
+  isProgress: boolean = true;
+  result:object;
 
   public _model: RegistrationModel;
 
-  constructor(private _fb: FormBuilder, private _dataservie: DataService) { 
+  constructor(private _fb: FormBuilder, private _dataservie: DataService,private _router :Router,private _service :AuthenticationService) { 
     this._model = new RegistrationModel();
   }
 
@@ -135,8 +138,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   onFinish(stepper: MatStepper) {
-
+    
     if(this.secondFormGroup.valid){
+      this.isProgress=true;
       this.mapProduct();
       let frm1data=this.firstFormGroup.value;
       let data=this.secondFormGroup.value;
@@ -150,12 +154,22 @@ export class RegistrationComponent implements OnInit {
       this._model.selectedProduct=frm1data['mappedProduct'];
       this._model.mappedProduct=frm1data['mappedProduct'];
 
-      console.log(this._model);
+      stepper.next();
       this._dataservie.registration(this._model).subscribe(res => {
-        alert('ddd');
-        console.log(res);
-        stepper.next();
-      });
+        //console.log(res);
+        this.result=res;
+        this.isProgress=false;
+      },
+      err=>{
+       // console.log(err);
+        alert(err.error.message);
+        if(err.error.error=="Unauthorized"){
+          this._service.logout();
+          this._router.navigate(['/']);
+        }
+
+      }
+      );
       
       
       

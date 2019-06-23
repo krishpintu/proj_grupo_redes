@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Detail</h1>
+<div mat-dialog-content class="card">
+    <mat-card>
+      <p *ngIf="isLoading">Please wait data is loading....</p>
+      <table class="rtable" *ngIf="!isLoading">
+        <tr>
+          <th colspan="2">Type : &nbsp; {{_model.leadGroup.type}}</th>
+          <th>Ref : &nbsp; {{_model.leadGroup.name}}</th>
+          <th>Status : &nbsp; {{_model.leadGroup.status}}</th>
+          <th>uniqueKey : &nbsp; {{_model.uniqueKey}}</th>
+        </tr>
+        <tr>
+            <th>officialName</th>
+            <td>{{_model.officialName}}</td>
+            <th>casualName</th>
+            <td colspan="2">{{_model.casualName}}</td>
+        </tr>
+        <tr>
+            <th>contact</th>
+            <td>{{_model.contactNumber}}</td>
+            <th>email</th>
+            <td colspan="2">{{_model.emailAddress}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Mapped Product</th>
+            <td colspan="3">{{_model.mappedProduct}}</td>
+        </tr>
+        <tr *ngIf="_model.address">
+            <th></th><th>CEP</th><th>Endereço</th><th>Número</th><th>complemento</th>
+        </tr>
+        <tr *ngFor="let add of _model.address; let i=index">
+            <td>
+              <i class="material-icons" *ngIf="add.towerBasedViabilidadeByDistance" title="radio">settings_input_antenna</i> &nbsp;
+              <i class="material-icons" *ngIf="add.fobasedViabilidadeByDistance" title="fiber">wifi_tethering</i>
+            </td>
+            <td>{{add.zipCode}}</td>
+            <td>{{add.address}}</td>
+            <td>{{add.streetNumber}}</td>
+            <td>{{add.complemento}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Selected Product</th>
+            <td colspan="3">{{_model.selectedProduct}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Remarks</th>
+            <td colspan="3">{{_model.remarks}}</td>
+        </tr>
+      </table>
+    </mat-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()" cdkFocusInitial>Close</button>
+</div>

@@ -10,15 +10,18 @@ import { AuthenticationService} from '../_services/authentication.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private dialog :MatDialog,private _router :Router,private _service :AuthenticationService ) { }
-
-  ngOnInit() {
+  
+  
+  constructor(private dialog :MatDialog,private _router :Router,private _service :AuthenticationService ) { 
     const config=new MatDialogConfig();
     config.disableClose=true;
     config.autoFocus=true;
     config.width="50%";
     this.dialog.open(DemoComponent,config);
+
+  }
+
+  ngOnInit() {
   }
   onLogout(){
     this._service.logout();
