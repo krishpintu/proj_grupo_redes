@@ -1,24 +1,21 @@
 <mat-toolbar color="primary">
-    <span>Registration</span>
+    <span>Etapa</span>
 </mat-toolbar>
 <mat-horizontal-stepper linear #stepper>
 
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
-        <ng-template matStepLabel>Qual Solução Está buscando?</ng-template>
-
+        <ng-template matStepLabel>Qual Solução está buscando?</ng-template>
         <div class="item-container">
             <form [formGroup]="firstFormGroup">
                 <mat-radio-group aria-label="Select an option" formControlName="opt_type" class="item-row" (change)="onTypeChnage()">
                     <mat-radio-button class="item-flex" value="LINK_DEDICADO">Link Dedicado</mat-radio-button>
                     <mat-radio-button class="item-flex" value="BANDA_LARGA">Banda Larga</mat-radio-button>
-                    <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponta a Ponta</mat-radio-button>
+                    <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponto a Ponto</mat-radio-button>
                     <mat-radio-button class="item-flex" value="METRO_ETHERNET">Metro Ethernet</mat-radio-button>
                 </mat-radio-group>
-                <div class="item-row">
-                        <mat-divider class="item-flex"></mat-divider>
-                </div>
                 <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
-                <div class="item-row" [formGroupName]="i">
+                <mat-card>
+                    <div class="item-row" [formGroupName]="i">
                         <mat-form-field class="item">
                             <input matInput placeholder="CEP" formControlName="zip" required>
                             <button mat-icon-button matSuffix (click)="getCEPData(i)">
@@ -51,17 +48,21 @@
                         
 
                 </div>
+                </mat-card>
                 </div>
+                <br><br><br>
+                <mat-card>
                 <div class="item-row">
-                    <mat-divider class="item-flex"></mat-divider>
+                    QUER CONECTIVIDADE POR ?
                 </div>
                 <div class="item-row">
                     <div class="item-flex">
-                            <mat-checkbox class="item-flex" value="RADIO" formControlName="fiber" (change)="mapProduct()">fibra óptica</mat-checkbox> &nbsp;
-                            <mat-checkbox class="item-flex" value="FIBRA_OTICA" formControlName="radio"  (change)="mapProduct()">rádio Frequência</mat-checkbox>
+                            <mat-checkbox class="item-flex" value="RADIO" formControlName="fiber" (change)="mapProduct()">Fibra ótica</mat-checkbox> &nbsp;
+                            <mat-checkbox class="item-flex" value="FIBRA_OTICA" formControlName="radio"  (change)="mapProduct()">Rádio frequência</mat-checkbox>
                             <input type="hidden" formControlName="mappedProduct">
                     </div>
                 </div>
+            </mat-card>
             </form>
             <div class="item-row">
                 <button mat-raised-button color="primary" matStepperNext>Avançar</button>
@@ -71,7 +72,8 @@
 
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="false">
-        <ng-template matStepLabel>dados da empresa</ng-template>
+        <ng-template matStepLabel>Dados da empresa</ng-template>
+        <mat-card>
         <div class="item-container">
             <form [formGroup]="secondFormGroup">
                 <div class="item-row">
@@ -112,43 +114,45 @@
                 </div>
             </form>
         </div>
-        <div class="mat-button-row">
-            <button mat-raised-button (click)="stepper.reset()">Reset</button>
-            <button mat-raised-button color="primary" (click)="onFinish(stepper)">Avançar</button>
+       <div class="mat-button-row">
+            <button mat-raised-button (click)="stepper.reset()">Voltar</button>
+            <button mat-raised-button color="primary" (click)="onFinish(stepper)">Verificar Viabilidade</button>
         </div>
+    </mat-card>
     </mat-step>
     <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
+            <ng-template matStepLabel>Resultado</ng-template>
             
             <div class="item-container">
                     <div class="item-row" *ngIf="isProgress">
                         <div class="item-flex progress">
                                 <label>
                                     <mat-icon matPrefix>hourglass_empty</mat-icon>
-                                     Please wait....
+                                     Verificando viabilidades....
                                 </label>  
                         </div>
                     </div>
-                    <p *ngIf="!isProgress">You are now done.</p>
+                    <p *ngIf="!isProgress">Resumo de calculo de viabilidade feita.Favor entrar em contato com nosso tecnicos com numero de referencia escrito abaixo para
+                        communicação futuro sobre deste cadastro. Valores e maiores informações vai ser encaminhado para o email informado.
+                    </p>
                     <div class="item-row" *ngIf="!isProgress">
                         <div class="item item-center">
                                 <mat-icon class="icon-success">verified_user</mat-icon>
                         </div>
                         <div class="item-flex">
-                                <p><b>Reference No : </b>{{result.leadGroup.name}}</p> 
-                                <p><b>foBasedViabilidadeByDistance : </b>{{result.foBasedViabilidadeByDistance}}</p> 
-                                <p><b>radioBasedViabilidadeByDistance : </b>{{result.radioBasedViabilidadeByDistance}}</p> 
-                                <p><b>selectedProduct : </b>{{result.selectedProduct}}</p> 
-                                <p><b>mappedProduct : </b>{{result.mappedProduct}}</p> 
-                                <p><b>Total address registered : </b>{{result.address.length}}</p>
+                                <p><b>Numero de referencia : </b>{{result.leadGroup.name}}</p> 
+                                <p><b>FO Viabilidade por distancia : </b>{{result.foBasedViabilidadeByDistance}} <b>%</b> </p> 
+                                <p><b>Radio Viabilidade por distancia : </b>{{result.radioBasedViabilidadeByDistance}} <b>%</b></p> 
+                                <!-- <p><b>Para uso internal : </b>{{result.selectedProduct}}</p>  -->
+                                <p><b>Produtos Selecionado neste cadastro : </b>{{result.mappedProduct}}</p> 
+                                <p><b>Numero de endereços neste cadastro : </b>{{result.address.length}}</p>
                         </div>
                     </div>
             </div>
             <br>
             <br>
             <div class="mat-button-row" *ngIf="!isProgress">
-                <button mat-raised-button color="green" (click)="stepper.reset()">Close & Reset</button>
+                <button mat-raised-button color="green" (click)="stepper.reset()">Fechar</button>
             </div>
         </mat-step>
-
 </mat-horizontal-stepper>

@@ -1,33 +1,39 @@
-<h1 mat-dialog-title>Demonstração de turnê</h1>
+<h1 mat-dialog-title>Bem vindo parceiro : Apresentando sistema de cadastro.</h1>
 <div mat-dialog-content>
 <mat-card>
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step [editable]="false">
-        <ng-template matStepLabel>Qual Solução <br>Está buscando?</ng-template>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ex animi qui quis eaque saepe, sapiente repellat ullam exercitationem assumenda sequi earum blanditiis, obcaecati omnis, ratione nam consequuntur suscipit ut.</p>
+        <ng-template matStepLabel>Qual solução <br>está buscando?</ng-template>
+        <p>Temos 4 produtos para oferecer.(Internet , Banda Larga , Ponto a Ponto , Metro Ethernet). Voces podem selecionar um deles.
+            Dois primeiros produtos precisa cadastrar um endereço aonde voce deseja receber serviço. Ponto a Ponto precisa cadastrar 
+            2 endereços aonde precisa este serviço.Metro Ethernet precisa pela menus 3 endereços cadastrados.Se tem mais do que 3 
+            endereços , podemos adicionar quantos que precisarem. Quando coloque CEP , clique em busca para campos necessarios para 
+            autopreencher e tambem coloque numero da rua e complemento se tem.
+        </p>
         <div class="mat-button-row">
             <button mat-raised-button color="primary" matStepperNext>próximo</button>
         </div>
     </mat-step>
     <mat-step [editable]="false">
-        <ng-template matStepLabel>dados da empresa</ng-template>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ex animi qui quis eaque saepe, sapiente repellat ullam exercitationem assumenda sequi earum blanditiis, obcaecati omnis, ratione nam consequuntur suscipit ut.</p>
+        <ng-template matStepLabel>Dados da empresa</ng-template>
+        <p>Preencher dados da empresa mostrando em formulario e clique em avançar</p>
         <div class="mat-button-row">
             <button mat-raised-button matStepperPrevious>De volta</button>
             <button mat-raised-button color="primary" matStepperNext>próximo</button>
         </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>resultado</ng-template>
-        Você está feito agora.
+        <ng-template matStepLabel>Resultado</ng-template>
+        Quando cadastro de dados esta com sucesso , o sistema retornará viabilidade de produtos desejados . Favor usa o chave de referencia
+        retornado por sistema para qualquer communicação futuro sobre deste cadastro.
         <div class="mat-button-row">
             <button mat-raised-button  matStepperPrevious>De volta</button> 
-            <button mat-raised-button color="primary" (click)="stepper.reset()">Reiniciar</button>
+            <button mat-raised-button color="primary" (click)="stepper.reset()">Leia denovo</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
 </mat-card>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="accent" (click)="onCancel()">Ja entendi !</button>
 </div>

@@ -18,10 +18,10 @@ export class HomeComponent implements OnInit {
     config.autoFocus=true;
     config.width="50%";
     this.dialog.open(DemoComponent,config);
+
   }
 
   ngOnInit() {
-
   }
   onLogout(){
     this._service.logout();
