@@ -13,7 +13,9 @@
                     <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponto a Ponto</mat-radio-button>
                     <mat-radio-button class="item-flex" value="METRO_ETHERNET">Metro Ethernet</mat-radio-button>
                 </mat-radio-group>
+                <br>
                 <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
+                        <br>
                 <mat-card>
                     <div class="item-row" [formGroupName]="i">
                         <mat-form-field class="item">
@@ -45,12 +47,11 @@
                                 </button>
                             </ng-template>
                         </div>
-                        
 
                 </div>
                 </mat-card>
                 </div>
-                <br><br><br>
+                <br><br>
                 <mat-card>
                 <div class="item-row">
                     QUER CONECTIVIDADE POR ?
