@@ -1,32 +1,32 @@
-<h1 mat-dialog-title>Detail</h1>
+<h1 mat-dialog-title>Detalhes</h1>
 <div mat-dialog-content class="card">
     <mat-card>
-      <p *ngIf="isLoading">Please wait data is loading....</p>
+      <p *ngIf="isLoading">Carregando....</p>
       <table class="rtable" *ngIf="!isLoading">
         <tr>
-          <th colspan="2">Type : &nbsp; {{_model.leadGroup.type}}</th>
+          <th colspan="2">Tipo : &nbsp; {{_model.leadGroup.type}}</th>
           <th>Ref : &nbsp; {{_model.leadGroup.name}}</th>
           <th>Status : &nbsp; {{_model.leadGroup.status}}</th>
-          <th>uniqueKey : &nbsp; {{_model.uniqueKey}}</th>
+          <th>CNPJ : &nbsp; {{_model.uniqueKey}}</th>
         </tr>
         <tr>
-            <th>officialName</th>
+            <th>Razão Social</th>
             <td>{{_model.officialName}}</td>
-            <th>casualName</th>
+            <th>Nome Fantasia</th>
             <td colspan="2">{{_model.casualName}}</td>
         </tr>
         <tr>
-            <th>contact</th>
+            <th>Contato</th>
             <td>{{_model.contactNumber}}</td>
-            <th>email</th>
+            <th>Email</th>
             <td colspan="2">{{_model.emailAddress}}</td>
         </tr>
         <tr>
-            <th colspan="2">Mapped Product</th>
+            <th colspan="2">Produto Desejado</th>
             <td colspan="3">{{_model.mappedProduct}}</td>
         </tr>
         <tr *ngIf="_model.address">
-            <th></th><th>CEP</th><th>Endereço</th><th>Número</th><th>complemento</th>
+            <th>Viabilidade por</th><th>CEP</th><th>Endereço</th><th>Número</th><th>complemento</th>
         </tr>
         <tr *ngFor="let add of _model.address; let i=index">
             <td>
@@ -39,16 +39,16 @@
             <td>{{add.complemento}}</td>
         </tr>
         <tr>
-            <th colspan="2">Selected Product</th>
+            <th colspan="2">Para  uso internal da Grupo Rede</th>
             <td colspan="3">{{_model.selectedProduct}}</td>
         </tr>
         <tr>
-            <th colspan="2">Remarks</th>
+            <th colspan="2">Recados</th>
             <td colspan="3">{{_model.remarks}}</td>
         </tr>
       </table>
     </mat-card>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()" cdkFocusInitial>Close</button>
+  <button mat-button (click)="closeDialog()" cdkFocusInitial>Fechar</button>
 </div>
