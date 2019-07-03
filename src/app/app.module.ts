@@ -15,6 +15,7 @@ import { DemoComponent } from './demo/demo.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegViewComponent } from './registration/reg-view.component';
+import { ForgetComponent } from './login/forget.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegViewComponent } from './registration/reg-view.component';
     DemoComponent,
     RegistrationComponent,
     DashboardComponent,
-    RegViewComponent
+    RegViewComponent,
+    ForgetComponent
   ],
   imports: [
     BrowserModule,

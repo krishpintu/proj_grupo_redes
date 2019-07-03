@@ -1,4 +1,3 @@
-
 <div class="landing-page">
   <div class="login-Container">
     <mat-card class="login-card">
@@ -6,20 +5,16 @@
         <img class="logo" src="../../assets/img/logo.png">
       </mat-card-header>
       <mat-card-content>
-        <form [formGroup]="loginFrmGrp">
+        <form [formGroup]="forgetFrmGrp">
           <mat-form-field class="full-width">
             <input matInput placeholder="Email" formControlName="usernameOrEmail">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput type="password" placeholder="Senha" formControlName="password">
           </mat-form-field>
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button class="full-width" [disabled]="submitted" mat-raised-button color="primary" (click)="onLoginClick()"
-          cdkFocusInitial>Entrar</button>
+        <button class="full-width" [disabled]="submitted" mat-raised-button color="primary" (click)="onForgetClick()"
+          cdkFocusInitial>Submit</button>
       </mat-card-actions>
-      <a class="forgetlink" [routerLink]="['/forget']" skipLocationChange>forget password</a>
     </mat-card>
   </div>
 </div>

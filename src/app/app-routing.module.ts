@@ -7,9 +7,11 @@ import {RegistrationComponent} from './registration/registration.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './_helpers/auth.guard';
 import {RegViewComponent} from './registration/reg-view.component';
+import {ForgetComponent} from './login/forget.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent,pathMatch: 'full'},
+  {path:'forget',component:ForgetComponent},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard],runGuardsAndResolvers:'always',children:
     [
       {path:'reg',component:RegistrationComponent},
