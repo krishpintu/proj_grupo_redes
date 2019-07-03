@@ -13,6 +13,7 @@
                     <mat-radio-button class="item-flex" value="LAN_TO_LAN">Ponto a Ponto</mat-radio-button>
                     <mat-radio-button class="item-flex" value="METRO_ETHERNET">Metro Ethernet</mat-radio-button>
                 </mat-radio-group>
+                <br>
                 <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
                 <mat-card>
                     <div class="item-row" [formGroupName]="i">

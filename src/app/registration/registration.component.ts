@@ -112,6 +112,12 @@ export class RegistrationComponent implements OnInit {
           fgcontrols.controls[index].get('city').setValue(res.cidade);
           fgcontrols.controls[index].get('state').setValue(res.uf);
           fgcontrols.controls[index].get('cep').setValue(res.cep);
+
+          if(index==0){
+            this.secondFormGroup.get('cep').setValue(res.cep);
+            this.secondFormGroup.get('address').setValue(`${res.end} , ${res.bairro}`);
+         }
+
         } else {
           alert('No data found!');
           add.setValue('');
