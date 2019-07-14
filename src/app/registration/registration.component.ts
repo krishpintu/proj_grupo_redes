@@ -5,6 +5,7 @@ import { RegistrationModel } from '../model/registration';
 import { MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthenticationService} from '../_services/authentication.service';
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-registration',

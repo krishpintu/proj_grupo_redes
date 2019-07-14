@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { Router , ActivatedRoute  } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
+
+import { ToastrService } from 'ngx-toastr'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   submitted :boolean=false;
   returnUrl: string;
 
-  constructor(private fb: FormBuilder, private _router:Router, private _route: ActivatedRoute,private _service: AuthenticationService) { 
+  constructor(private fb: FormBuilder, private _router:Router, private _route: ActivatedRoute,private _service: AuthenticationService,private toastr: ToastrService) { 
     // redirect to home if already logged in
     if (this._service.currentUserValue) { 
         this._router.navigate(['/home'],{skipLocationChange: true});
@@ -39,11 +41,12 @@ export class LoginComponent implements OnInit {
       },
       err =>{
           this.submitted=false;
-          console.log(err);
-          alert('Invalid Credential');
+          //console.log(err);
+          this.toastr.error("Invalid Credential!!!",'Error') ;
         }
       );
     }
   }
+  
 
 }
