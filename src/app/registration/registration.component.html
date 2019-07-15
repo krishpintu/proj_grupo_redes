@@ -22,6 +22,8 @@
                             <button mat-icon-button matSuffix (click)="getCEPData(i)">
                                 <mat-icon>find_replace</mat-icon>
                             </button>
+                            <mat-error *ngIf="(this.firstFormGroup.dirty || this.firstFormGroup.touched) &&
+                            firstFormGroup.get('address_list').invalid">enter cep</mat-error>
                         </mat-form-field>
                         <mat-form-field class="item-flex">
                             <input matInput placeholder="Endereço" readonly formControlName="address">
@@ -29,6 +31,7 @@
                             <input type="hidden" formControlName="city">
                             <input type="hidden" formControlName="state">
                             <input type="hidden" formControlName="country">
+                            <mat-error *ngIf="this.invalidCEP">Invalid CEP!!!</mat-error>
                         </mat-form-field>
                         <mat-form-field class="item">
                             <input matInput placeholder="Número" formControlName="streetNumber">
@@ -46,7 +49,6 @@
                                 </button>
                             </ng-template>
                         </div>
-                        
 
                 </div>
                 </mat-card>
@@ -63,6 +65,8 @@
                             <input type="hidden" formControlName="mappedProduct">
                     </div>
                 </div>
+                <mat-error *ngIf="(this.firstFormGroup.dirty || this.firstFormGroup.touched) &&
+                this.firstFormGroup.controls.mappedProduct.errors?.required">Select at least one product</mat-error>
             </mat-card>
             </form>
             <div class="item-row">
@@ -80,11 +84,13 @@
                 <div class="item-row">
                     <mat-form-field class="full-width item-flex">
                         <input matInput placeholder="Razão social" formControlName="officialName" required>
+                        <mat-error *ngIf="this.secondFormGroup.controls.officialName.errors">officialName can't be empty.</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="item-row">
                     <mat-form-field class="full-width item-flex">
                         <input matInput placeholder="CNPJ" formControlName="uniqueKey" required>
+                        <mat-error *ngIf="this.secondFormGroup.controls.uniqueKey.errors">CNPJ can't be empty.</mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width item-flex">
                             <input matInput placeholder="CEP" formControlName="cep">
@@ -103,6 +109,7 @@
                 <div class="item-row">
                         <mat-form-field class="full-width item-flex">
                             <input matInput placeholder="Email" formControlName="emailAddress" required>
+                            <mat-error *ngIf="this.secondFormGroup.controls.emailAddress.errors">Email can't be empty.</mat-error>
                         </mat-form-field>
                 </div>
                 <div class="item-row">
@@ -111,6 +118,7 @@
                         </mat-form-field>
                         <mat-form-field class="full-width item-flex">
                                 <input matInput placeholder="Tel/Cel" formControlName="contactNumber" required>
+                                <mat-error *ngIf="this.secondFormGroup.controls.contactNumber.errors">contactNumber can't be empty.</mat-error>
                         </mat-form-field>
                 </div>
             </form>
