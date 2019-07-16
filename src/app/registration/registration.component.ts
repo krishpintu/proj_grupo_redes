@@ -124,7 +124,7 @@ export class RegistrationComponent implements OnInit {
          }
 
         } else {
-          this.toastr.warning("CEP data not found!!!",'Warning') ;
+          this.toastr.warning("CEP não encontrado !!!",'Warning') ;
           add.setValue('');
           this.invalidCEP=true;
           
@@ -191,7 +191,7 @@ export class RegistrationComponent implements OnInit {
   
     }
     else{
-      this.toastr.error("Fill all Required Field!!!",'Error') ;
+      this.toastr.error("Preenche todos os campos obrigatorios!!!",'Error') ;
     }
     
  }

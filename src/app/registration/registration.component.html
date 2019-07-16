@@ -56,7 +56,7 @@
                 <br><br><br>
                 <mat-card>
                 <div class="item-row">
-                    QUER CONECTIVIDADE POR ?
+                    Conexão através de ?
                 </div>
                 <div class="item-row">
                     <div class="item-flex">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <mat-error *ngIf="(this.firstFormGroup.dirty || this.firstFormGroup.touched) &&
-                this.firstFormGroup.controls.mappedProduct.errors?.required">Select at least one product</mat-error>
+                this.firstFormGroup.controls.mappedProduct.errors?.required">Selecione um ou mais dos produtos</mat-error>
             </mat-card>
             </form>
             <div class="item-row">
@@ -84,13 +84,13 @@
                 <div class="item-row">
                     <mat-form-field class="full-width item-flex">
                         <input matInput placeholder="Razão social" formControlName="officialName" required>
-                        <mat-error *ngIf="this.secondFormGroup.controls.officialName.errors">officialName can't be empty.</mat-error>
+                        <mat-error *ngIf="this.secondFormGroup.controls.officialName.errors">Preenche Razão Social .</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="item-row">
                     <mat-form-field class="full-width item-flex">
                         <input matInput placeholder="CNPJ" formControlName="uniqueKey" required>
-                        <mat-error *ngIf="this.secondFormGroup.controls.uniqueKey.errors">CNPJ can't be empty.</mat-error>
+                        <mat-error *ngIf="this.secondFormGroup.controls.uniqueKey.errors">Preenche CNPJ.</mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width item-flex">
                             <input matInput placeholder="CEP" formControlName="cep">
@@ -109,7 +109,7 @@
                 <div class="item-row">
                         <mat-form-field class="full-width item-flex">
                             <input matInput placeholder="Email" formControlName="emailAddress" required>
-                            <mat-error *ngIf="this.secondFormGroup.controls.emailAddress.errors">Email can't be empty.</mat-error>
+                            <mat-error *ngIf="this.secondFormGroup.controls.emailAddress.errors">Preenche E-mail.</mat-error>
                         </mat-form-field>
                 </div>
                 <div class="item-row">
@@ -118,7 +118,7 @@
                         </mat-form-field>
                         <mat-form-field class="full-width item-flex">
                                 <input matInput placeholder="Tel/Cel" formControlName="contactNumber" required>
-                                <mat-error *ngIf="this.secondFormGroup.controls.contactNumber.errors">contactNumber can't be empty.</mat-error>
+                                <mat-error *ngIf="this.secondFormGroup.controls.contactNumber.errors">Preenche telefone.</mat-error>
                         </mat-form-field>
                 </div>
             </form>
@@ -141,27 +141,30 @@
                                 </label>  
                         </div>
                     </div>
-                    <p *ngIf="!isProgress">Resumo de calculo de viabilidade feita.Favor entrar em contato com nosso tecnicos com numero de referencia escrito abaixo para
-                        communicação futuro sobre deste cadastro. Valores e maiores informações vai ser encaminhado para o email informado.
+                    <p color="red" align="center" *ngIf="!isProgress">RESULTADO DE PRÉVIABILIDADE
                     </p>
-                    <div class="item-row" *ngIf="!isProgress">
-                        <div class="item item-center">
-                                <mat-icon class="icon-success">verified_user</mat-icon>
-                        </div>
+                    <div class="item-row" *ngIf="!isProgress"  >
                         <div class="item-flex">
                                 <p><b>Numero de referencia : </b>{{result.leadGroup.name}}</p> 
-                                <p><b>FO Viabilidade por distancia : </b>{{result.foBasedViabilidadeByDistance}} <b>%</b> </p> 
+                                <p><b>Fibra ótica Viabilidade por distancia : </b>{{result.foBasedViabilidadeByDistance}} <b>%</b> </p> 
                                 <p><b>Radio Viabilidade por distancia : </b>{{result.radioBasedViabilidadeByDistance}} <b>%</b></p> 
                                 <!-- <p><b>Para uso internal : </b>{{result.selectedProduct}}</p>  -->
-                                <p><b>Produtos Selecionado neste cadastro : </b>{{result.mappedProduct}}</p> 
-                                <p><b>Numero de endereços neste cadastro : </b>{{result.address.length}}</p>
+                                <p><b>Produtos Selecionado neste orçamento : </b>{{result.mappedProduct}}</p> 
+                                <p><b>Numero de endereços neste orçamento : </b>{{result.address.length}}</p>
+                        </div>
+                        <div class="item item-center" align="center">
+                            <mat-icon class="icon-success">verified_user</mat-icon>
                         </div>
                     </div>
+                    <p color="red" *ngIf="!isProgress" align="center" >Valores e maiores informações vai ser encaminhado para o email informado.
+                    </p>
             </div>
             <br>
             <br>
             <div class="mat-button-row" *ngIf="!isProgress">
-                <button mat-raised-button color="green" (click)="stepper.reset()">Fechar</button>
+               <div mat-dialog-actions align="end">
+                   <button mat-raised-button color="green" float="end" (click)="stepper.reset()">Fechar</button>
+                </div>
             </div>
         </mat-step>
 </mat-horizontal-stepper>
