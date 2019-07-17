@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class DataService {
 
   apiUrl="http://189.1.102.246:8080/grupo-redes-services/api";
+  //apiUrl="http://localhost:8080/api";
   
   constructor(private http: HttpClient) {
   }

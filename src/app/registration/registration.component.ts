@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
       state: [''],
       country: ['BRAZIL'],
       complemento: [''],
-      zip: ['', Validators.required],
+      zipCode: ['', Validators.required],
       streetNumber: [''],
       cep: ['', Validators.required],
     });
@@ -106,7 +106,7 @@ export class RegistrationComponent implements OnInit {
   getCEPData(index): void {
     this.invalidCEP=false;
     const fgcontrols = (<FormGroup>this.firstFormGroup.controls['address_list']);
-    const cep = fgcontrols.controls[index].get('zip').value;
+    const cep = fgcontrols.controls[index].get('zipCode').value;
     //working this.firstFormGroup.value.address_list[id].address = 'New Value';
     if (cep.trim() != "") {
       const add = fgcontrols.controls[index].get('address');
