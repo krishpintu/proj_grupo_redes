@@ -15,6 +15,7 @@
                 </mat-radio-group>
                 <br>
                 <div formArrayName="address_list" *ngFor="let skill of firstFormGroup.get('address_list').controls; let i = index">
+                        <br>
                 <mat-card>
                     <div class="item-row" [formGroupName]="i">
                         <mat-form-field class="item">
@@ -53,7 +54,7 @@
                 </div>
                 </mat-card>
                 </div>
-                <br><br><br>
+                <br><br>
                 <mat-card>
                 <div class="item-row">
                     Conexão através de ?
