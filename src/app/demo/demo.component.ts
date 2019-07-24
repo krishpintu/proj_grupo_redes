@@ -16,7 +16,7 @@ export class DemoComponent implements OnInit {
   }
   onCancel(){
     this.dialogRef.close();
-    this._router.navigate(['/home/reg']);
+    this._router.navigate(['/home/reg'],{skipLocationChange: true});
 
   }
 }

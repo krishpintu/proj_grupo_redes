@@ -4,11 +4,8 @@
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step [editable]="false">
         <ng-template matStepLabel>Qual solução <br>está buscando?</ng-template>
-        <p>Temos 4 produtos para oferecer.(Internet , Banda Larga , Ponto a Ponto , Metro Ethernet). Voces podem selecionar um deles.
-            Dois primeiros produtos precisa cadastrar um endereço aonde voce deseja receber serviço. Ponto a Ponto precisa cadastrar 
-            2 endereços aonde precisa este serviço.Metro Ethernet precisa pela menus 3 endereços cadastrados.Se tem mais do que 3 
-            endereços , podemos adicionar quantos que precisarem. Quando coloque CEP , clique em busca para campos necessarios para 
-            autopreencher e tambem coloque numero da rua e complemento se tem.
+        <p>Etapa 1:<br>
+            Você deve escolher o produto do seu interesse , sendo as opções: Link Dedicado , Banda Larga , Ponto a Ponto ou Metro Ethernet.
         </p>
         <div class="mat-button-row">
             <button mat-raised-button color="primary" matStepperNext>próximo</button>
@@ -16,7 +13,8 @@
     </mat-step>
     <mat-step [editable]="false">
         <ng-template matStepLabel>Dados da empresa</ng-template>
-        <p>Preencher dados da empresa mostrando em formulario e clique em avançar</p>
+        <p>Etapa 2:<br>
+            Informar alguns dados do local de instalação</p>
         <div class="mat-button-row">
             <button mat-raised-button matStepperPrevious>De volta</button>
             <button mat-raised-button color="primary" matStepperNext>próximo</button>
@@ -24,8 +22,8 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Resultado</ng-template>
-        Quando cadastro de dados esta com sucesso , o sistema retornará viabilidade de produtos desejados . Favor usa o chave de referencia
-        retornado por sistema para qualquer communicação futuro sobre deste cadastro.
+        Etapa 3:<br>
+        Resultado da pesquisa , onde maiores detalhes e valores serão encaminhados no e-mail informado.
         <div class="mat-button-row">
             <button mat-raised-button  matStepperPrevious>De volta</button> 
             <button mat-raised-button color="primary" (click)="stepper.reset()">Leia denovo</button>

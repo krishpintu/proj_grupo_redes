@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule } from 'ngx-toastr';  
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { DemoComponent } from './demo/demo.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegViewComponent } from './registration/reg-view.component';
+import { ForgetComponent } from './login/forget.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { RegViewComponent } from './registration/reg-view.component';
     DemoComponent,
     RegistrationComponent,
     DashboardComponent,
-    RegViewComponent
+    RegViewComponent,
+    ForgetComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { RegViewComponent } from './registration/reg-view.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),  
   ],
   providers: [],
   bootstrap: [AppComponent]
