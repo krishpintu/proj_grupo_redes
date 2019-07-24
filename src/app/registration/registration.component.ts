@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy , ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { DataService } from '../_services/dataservice.service';
 import { RegistrationModel } from '../model/registration';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy  {
 
   @ViewChild('stepper') private myStepper: MatStepper;
   
@@ -30,6 +30,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _dataservie: DataService,private _router :Router,private _service :AuthenticationService,private toastr: ToastrService) { 
     this._model = new RegistrationModel();
+
   }
 
   ngOnInit() {
@@ -52,6 +53,10 @@ export class RegistrationComponent implements OnInit {
       streetno: [''],
       contato: [''],
     });
+  }
+
+  ngOnDestroy(){
+    
   }
 
   addAddress(): FormGroup {

@@ -1,4 +1,4 @@
-
+<ng-container *ngIf="!isDemoUser">
 <mat-toolbar class="toolbarHead">
     <mat-toolbar-row>
       <a  [routerLink]="['/home']" skipLocationChange><span><img class="logo" src="../../assets/img/logo.png"></span></a>
@@ -17,4 +17,5 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <div class="main-Container"></div>
+</ng-container>
   <router-outlet></router-outlet>

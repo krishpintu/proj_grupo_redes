@@ -51,5 +51,12 @@ export class DataService {
     return this.http.get<any>(`${this.apiUrl}/lead/in-group/viabilidade-report/${id}`,httpOptions);
   }
   
+  forgotPassword(usrData){
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    return this.http.post<any>(`${this.apiUrl}/auth/forgot-pswd`,usrData,httpOptions);
+
+  }
 
 }
